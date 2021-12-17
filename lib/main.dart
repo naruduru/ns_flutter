@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ns_flutter/screens/home.dart';
-import 'package:ns_flutter/screens/board.dart';
+// import 'package:ns_flutter/screens/board.dart';
 import 'package:ns_flutter/screens/my.dart';
 
 void main() {
@@ -36,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
   final List<Widget> _children = [
     const Home(),
-    const Board(),
+    // const Board(),
     const My()
   ];
 
