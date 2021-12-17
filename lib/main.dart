@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ns_flutter/screens/home.dart';
-// import 'package:ns_flutter/screens/board.dart';
+import 'package:ns_flutter/screens/notice_board.dart';
 import 'package:ns_flutter/screens/my.dart';
 
 void main() {
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: '니트'),
+      home: const MyHomePage(title: '니트소프트'),
     );
   }
 }
@@ -36,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
   final List<Widget> _children = [
     const Home(),
-    // const Board(),
+    const NoticeBoard(),
     const My()
   ];
 
@@ -51,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
         backgroundColor: const Color(0xfff53755),
+        centerTitle: true,
       ),
       body: _children[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -68,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home',),
-          BottomNavigationBarItem(icon: Icon(Icons.list_alt), label: 'Board',),
+          BottomNavigationBarItem(icon: Icon(Icons.list_alt), label: 'Notice',),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'My',),
         ],
         currentIndex: _selectedIndex,
