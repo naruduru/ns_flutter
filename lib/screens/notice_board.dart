@@ -56,43 +56,69 @@ class _NoticeBoardState extends State<NoticeBoard> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: <Widget>[
-          const SliverAppBar(
-            backgroundColor: Color(0xfff53755),
-            floating: false,
-            pinned: false,
-            snap: false,
-            expandedHeight: 100.0,
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text("니트"),
-              background: Image(image: AssetImage('images/logo.png')),
+    return DefaultTabController(length: 4, child: Scaffold(
+        body: NestedScrollView(
+          floatHeaderSlivers: true,
+          headerSliverBuilder: (context, innerBoxIsScrolled) => [
+            const SliverAppBar(
+              pinned: true,
+              floating: true,
+              snap: true,
+              title: Text('NsBar'),
+              centerTitle: true,
+              bottom: TabBar(
+                  indicatorColor: Colors.white,
+                  indicatorWeight: 5,
+                  tabs: [
+                    Tab(icon: Icon(Icons.home), text: 'Home'),
+                    Tab(icon: Icon(Icons.list_alt), text: 'Feed'),
+                    Tab(icon: Icon(Icons.person), text: 'Profile'),
+                    Tab(icon: Icon(Icons.settings), text: 'Settings'),
+                  ]
+              ),
             ),
-          ),
-          SliverList(delegate: SliverChildBuilderDelegate(
-                  (context, index) => ListTile(
-                    contentPadding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 0.0),
-                    dense:true,
-                    title: Text(entries[index]),
-                    subtitle: Text(subEntries[index], style: const TextStyle(fontSize: 12,),),
-                  ), childCount: 20),
-          ),
-        ],
+          ],
+          body: ListView.separated(itemBuilder: (context, index) => const ListTile(title : Text('test')), separatorBuilder: (context, index) => const SizedBox(height: 12,), itemCount: 25),
+        )
       )
-      // body: ListView.separated(
-      //   padding: const EdgeInsets.all(4),
-      //   itemBuilder: (BuildContext context, int index) {
-      //     return ListTile(
-      //       contentPadding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 0.0),
-      //       dense:true,
-      //       title: Text(entries[index]),
-      //       subtitle: Text(subEntries[index], style: const TextStyle(fontSize: 12,),),
-      //     );
-      //   },
-      //   separatorBuilder: (BuildContext context, int index) => const Divider(),
-      //   itemCount: entries.length,
-      // ),
     );
+    // return Scaffold(
+    //   body: CustomScrollView(
+    //     slivers: <Widget>[
+    //       const SliverAppBar(
+    //         backgroundColor: Color(0xfff53755),
+    //         floating: false,
+    //         pinned: false,
+    //         snap: false,
+    //         expandedHeight: 100.0,
+    //         flexibleSpace: FlexibleSpaceBar(
+    //           title: Text("니트"),
+    //           background: Image(image: AssetImage('images/logo.png')),
+    //         ),
+    //       ),
+    //       SliverList(delegate: SliverChildBuilderDelegate(
+    //               (context, index) => ListTile(
+    //                 contentPadding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 0.0),
+    //                 dense:true,
+    //                 title: Text(entries[index]),
+    //                 subtitle: Text(subEntries[index], style: const TextStyle(fontSize: 12,),),
+    //               ), childCount: 20),
+    //       ),
+    //     ],
+    //   )
+    //   // body: ListView.separated(
+    //   //   padding: const EdgeInsets.all(4),
+    //   //   itemBuilder: (BuildContext context, int index) {
+    //   //     return ListTile(
+    //   //       contentPadding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 0.0),
+    //   //       dense:true,
+    //   //       title: Text(entries[index]),
+    //   //       subtitle: Text(subEntries[index], style: const TextStyle(fontSize: 12,),),
+    //   //     );
+    //   //   },
+    //   //   separatorBuilder: (BuildContext context, int index) => const Divider(),
+    //   //   itemCount: entries.length,
+    //   // ),
+    // );
   }
 }
