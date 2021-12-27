@@ -14,11 +14,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '니트',
+      debugShowCheckedModeBanner: false,
+      title: 'NS',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: '니트소프트'),
+      home: const MyHomePage(title: 'NS'),
     );
   }
 }
@@ -34,6 +35,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
+
   final List<Widget> _children = [
     const Home(),
     const NoticeBoard(),
@@ -52,6 +54,20 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
         backgroundColor: const Color(0xfff53755),
         centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.menu),
+          onPressed: () {
+            print('menu button is clicked');
+          },
+        ),
+        actions: <Widget>[
+          IconButton(
+              icon: const Icon(Icons.home),
+              onPressed: () {
+                print('home button is clicked');
+              }
+          )
+        ],
       ),
       body: _children[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(

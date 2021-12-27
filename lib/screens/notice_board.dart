@@ -57,27 +57,42 @@ class _NoticeBoardState extends State<NoticeBoard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(40.0),
-        child: AppBar(
-          title: const Text('Notice', style: TextStyle(fontWeight: FontWeight.w900),),
-          backgroundColor: Colors.white70,
-          foregroundColor: Colors.deepPurple
-        ),
-      ),
-      body: ListView.separated(
-        padding: const EdgeInsets.all(4),
-        itemBuilder: (BuildContext context, int index) {
-          return ListTile(
-            contentPadding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 0.0),
-            dense:true,
-            title: Text(entries[index]),
-            subtitle: Text(subEntries[index], style: const TextStyle(fontSize: 12,),),
-          );
-        },
-        separatorBuilder: (BuildContext context, int index) => const Divider(),
-        itemCount: entries.length,
-      ),
+      body: CustomScrollView(
+        slivers: <Widget>[
+          const SliverAppBar(
+            backgroundColor: Color(0xfff53755),
+            floating: false,
+            pinned: false,
+            snap: false,
+            expandedHeight: 100.0,
+            flexibleSpace: FlexibleSpaceBar(
+              title: Text("니트"),
+              background: Image(image: AssetImage('images/logo.png')),
+            ),
+          ),
+          SliverList(delegate: SliverChildBuilderDelegate(
+                  (context, index) => ListTile(
+                    contentPadding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 0.0),
+                    dense:true,
+                    title: Text(entries[index]),
+                    subtitle: Text(subEntries[index], style: const TextStyle(fontSize: 12,),),
+                  ), childCount: 20),
+          ),
+        ],
+      )
+      // body: ListView.separated(
+      //   padding: const EdgeInsets.all(4),
+      //   itemBuilder: (BuildContext context, int index) {
+      //     return ListTile(
+      //       contentPadding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 0.0),
+      //       dense:true,
+      //       title: Text(entries[index]),
+      //       subtitle: Text(subEntries[index], style: const TextStyle(fontSize: 12,),),
+      //     );
+      //   },
+      //   separatorBuilder: (BuildContext context, int index) => const Divider(),
+      //   itemCount: entries.length,
+      // ),
     );
   }
 }
