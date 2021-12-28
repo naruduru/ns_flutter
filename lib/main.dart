@@ -15,11 +15,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'NS',
+      title: 'NEAT-SOFT',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'NS'),
+      home: const MyHomePage(title: 'NS게시판'),
     );
   }
 }
@@ -34,7 +34,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
 
   final List<Widget> _children = [
     const Home(),
@@ -50,25 +50,25 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        backgroundColor: const Color(0xfff53755),
-        centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.menu),
-          onPressed: () {
-            print('menu button is clicked');
-          },
-        ),
-        actions: <Widget>[
-          IconButton(
-              icon: const Icon(Icons.home),
-              onPressed: () {
-                print('home button is clicked');
-              }
-          )
-        ],
-      ),
+      // appBar: AppBar(
+      //   title: Text(widget.title),
+      //   backgroundColor: const Color(0xfff53755),
+      //   centerTitle: true,
+      //   leading: IconButton(
+      //     icon: const Icon(Icons.menu),
+      //     onPressed: () {
+      //       print('menu button is clicked');
+      //     },
+      //   ),
+      //   actions: <Widget>[
+      //     IconButton(
+      //         icon: const Icon(Icons.home),
+      //         onPressed: () {
+      //           print('home button is clicked');
+      //         }
+      //     )
+      //   ],
+      // ),
       body: _children[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         mouseCursor: SystemMouseCursors.grab,
