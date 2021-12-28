@@ -100,51 +100,13 @@ class _NoticeBoardState extends State<NoticeBoard> {
       body: CustomScrollView(
         slivers: [
           const SliverPersistentHeader(
-            delegate: CustomSliverAppBarDelegate(expandedHeight: 130),
+            delegate: CustomSliverAppBarDelegate(expandedHeight: 150),
             pinned: true,
           ),
           buildList()
         ],
       ),
     );
-    // return Scaffold(
-      // body: CustomScrollView(
-      //   slivers: <Widget>[
-      //     const SliverAppBar(
-      //       backgroundColor: Color(0xfff53755),
-      //       floating: false,
-      //       pinned: false,
-      //       snap: false,
-      //       expandedHeight: 100.0,
-      //       flexibleSpace: FlexibleSpaceBar(
-      //         title: Text("니트"),
-      //         background: Image(image: AssetImage('images/logo.png')),
-      //       ),
-      //     ),
-      //     SliverList(delegate: SliverChildBuilderDelegate(
-      //             (context, index) => ListTile(
-      //               contentPadding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 0.0),
-      //               dense:true,
-      //               title: Text(entries[index]),
-      //               subtitle: Text(subEntries[index], style: const TextStyle(fontSize: 12,),),
-      //             ), childCount: 20),
-      //     ),
-      //   ],
-      // )
-    //   // body: ListView.separated(
-    //   //   padding: const EdgeInsets.all(4),
-    //   //   itemBuilder: (BuildContext context, int index) {
-    //   //     return ListTile(
-    //   //       contentPadding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 0.0),
-    //   //       dense:true,
-    //   //       title: Text(entries[index]),
-    //   //       subtitle: Text(subEntries[index], style: const TextStyle(fontSize: 12,),),
-    //   //     );
-    //   //   },
-    //   //   separatorBuilder: (BuildContext context, int index) => const Divider(),
-    //   //   itemCount: entries.length,
-    //   // ),
-    // );
   }
 
   buildList() {
@@ -175,6 +137,7 @@ class CustomSliverAppBarDelegate extends SliverPersistentHeaderDelegate{
         buildBackground(shrinkOffset),
         buildAppTitleBar(shrinkOffset),
         buildAppBar(shrinkOffset),
+        buildInfo()
       ],
     );
   }
@@ -194,22 +157,25 @@ class CustomSliverAppBarDelegate extends SliverPersistentHeaderDelegate{
   }
 
   buildAppBar(double shrinkOffset) {
-    return AppBar(
-      backgroundColor: Colors.transparent,
-      elevation: 0.0,
-      leading: IconButton(
-        icon: const Icon(Icons.menu),
-        onPressed: () {
-        },
-      ),
-      actions: <Widget>[
-        IconButton(
-            icon: const Icon(Icons.home),
-            onPressed: () {
-            }
-        )
-      ],
-      centerTitle: true,
+    return PreferredSize(
+      preferredSize: const Size.fromHeight(400.0),
+      child: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        leading: IconButton(
+          icon: const Icon(Icons.menu),
+          onPressed: () {
+          },
+        ),
+        actions: <Widget>[
+          IconButton(
+              icon: const Icon(Icons.home),
+              onPressed: () {
+              }
+          )
+        ],
+        centerTitle: true,
+    ),
     );
   }
 
@@ -225,52 +191,6 @@ class CustomSliverAppBarDelegate extends SliverPersistentHeaderDelegate{
           image: AssetImage('images/volvo.png'),
           fit: BoxFit.cover,
         ),
-      ),
-      alignment: Alignment.bottomLeft,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-            margin: const EdgeInsets.all(5),
-            width: 40,
-            height: 40,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                  image: AssetImage('images/logo_icon.png'),
-                  fit: BoxFit.fill
-              ),
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(left: 5, top: 10),
-            width: 200,
-            height: 40,
-            child:
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
-                    "니트소프트(NEAT-SOFT)",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                      height: 1.0
-                    ),
-                  ),
-                  SizedBox(height: 3,),
-                  Text(
-                    "멤버 14명",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 10,
-                    ),
-                  ),
-                ],
-              ),
-          )
-        ],
         ),
       ),
     );
@@ -294,6 +214,58 @@ class CustomSliverAppBarDelegate extends SliverPersistentHeaderDelegate{
           ),
         ],
         ),
+      ),
+    );
+  }
+
+  buildInfo() {
+    return Positioned(
+      top: 90,
+      left: 10,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Container(
+            margin: const EdgeInsets.all(5),
+            width: 40,
+            height: 40,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                  image: AssetImage('images/logo_icon.png'),
+                  fit: BoxFit.fill
+              ),
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(left: 5, top: 10),
+            width: 200,
+            height: 40,
+            child:
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text(
+                  "니트소프트(NEAT-SOFT)",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      height: 1.0
+                  ),
+                ),
+                SizedBox(height: 3,),
+                Text(
+                  "멤버 14명",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 10,
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
