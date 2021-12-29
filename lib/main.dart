@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ns_flutter/screens/home.dart';
-import 'package:ns_flutter/screens/notice_board.dart';
-import 'package:ns_flutter/screens/my.dart';
+import 'package:ns_flutter/screens/search.dart';
+import 'package:ns_flutter/screens/person_add.dart';
+import 'package:ns_flutter/screens/chat.dart';
+import 'package:ns_flutter/screens/notification.dart';
+import 'package:ns_flutter/screens/edit.dart';
+import 'package:ns_flutter/screens/nav_bar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,13 +38,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _selectedIndex = 1;
-
-  final List<Widget> _children = [
-    const Home(),
-    const NoticeBoard(),
-    const My()
-  ];
 
   @override
   void initState() {
@@ -50,53 +47,66 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text(widget.title),
-      //   backgroundColor: const Color(0xfff53755),
-      //   centerTitle: true,
-      //   leading: IconButton(
-      //     icon: const Icon(Icons.menu),
-      //     onPressed: () {
-      //       print('menu button is clicked');
-      //     },
-      //   ),
-      //   actions: <Widget>[
-      //     IconButton(
-      //         icon: const Icon(Icons.home),
-      //         onPressed: () {
-      //           print('home button is clicked');
-      //         }
-      //     )
-      //   ],
-      // ),
-      body: _children[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        mouseCursor: SystemMouseCursors.grab,
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: const Color(0xfff53755),
-        elevation: 0,
-        iconSize: 30,
-        selectedFontSize: 15,
-        selectedIconTheme: const IconThemeData(color: Color(0xfff4e937), size: 30),
-        selectedItemColor: const Color(0xfff4e937),
-        unselectedIconTheme: const IconThemeData(color: Color(0xfff9a734),),
-        unselectedItemColor: const Color(0xfff9a734),
-        unselectedFontSize: 14,
-
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home',),
-          BottomNavigationBarItem(icon: Icon(Icons.list_alt), label: 'Notice',),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'My',),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
+      drawer: NavBar(),
+      body: const Home(),
+      bottomNavigationBar: BottomAppBar(
+        color: const Color(0xff3a3041),
+        shape: const CircularNotchedRectangle(),
+        child: SizedBox(
+          height: 40,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                IconButton(
+                  icon: const Icon(Icons.search),
+                  iconSize: 25.0,
+                  color: Colors.white,
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const Search()));
+                  },
+                ),
+                IconButton(
+                  icon: const Icon(Icons.person_add_alt_outlined),
+                  iconSize: 25.0,
+                  color: Colors.white,
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const PersonAdd()));
+                  },
+                ),
+                IconButton(
+                  icon: const Icon(Icons.chat_outlined),
+                  iconSize: 25.0,
+                  color: Colors.white,
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const Chat()));
+                  },
+                ),
+                IconButton(
+                  icon: const Icon(Icons.notifications_active_outlined),
+                  iconSize: 25.0,
+                  color: Colors.white,
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const Noti()));
+                  },
+                ),
+                IconButton(
+                  icon: const Icon(Icons.mode_edit_outlined),
+                  iconSize: 25.0,
+                  color: Colors.white,
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const Edit()));
+                  },
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
   }
 }
